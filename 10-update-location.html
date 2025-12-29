@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0B1F3A">
+  <title>Update Location - Glintz</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="screen onboarding-screen">
+      <header class="header">
+        <div class="header__content">
+          <a href="09-location-history.html" class="header__btn">
+            <span class="material-symbols-rounded">arrow_back</span>
+          </a>
+          <h1 class="header__title">Update Location</h1>
+          <div class="header__spacer"></div>
+        </div>
+      </header>
+      
+      <div class="screen__content">
+        <div style="text-align: center; padding: var(--space-4) 0;">
+          <div style="width: 80px; height: 80px; background: var(--teal-50); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+            <span class="material-symbols-rounded icon-filled" style="font-size: 40px; color: var(--teal-500);">add_location_alt</span>
+          </div>
+          <h2 style="font-size: var(--text-xl); font-weight: var(--font-bold); color: var(--navy-800); margin-bottom: var(--space-2);">Verify New Location</h2>
+          <p style="font-size: var(--text-sm); color: var(--gray-500); max-width: 280px; margin: 0 auto var(--space-6);">Upload a proof of address document to unlock local payment rails in your new location.</p>
+        </div>
+        
+        <div class="input-wrapper">
+          <label class="input-label">New Country</label>
+          <div class="select-wrapper">
+            <select class="input-field input-field--select" id="newCountrySelect" onchange="updateNewLocationRails()">
+              <option value="" disabled selected>Select your new country</option>
+              <option value="TH">🇹🇭 Thailand</option>
+              <option value="JP">🇯🇵 Japan</option>
+              <option value="AU">🇦🇺 Australia</option>
+              <option value="DE">🇩🇪 Germany</option>
+              <option value="FR">🇫🇷 France</option>
+            </select>
+            <span class="material-symbols-rounded select-icon">expand_more</span>
+          </div>
+        </div>
+        
+        <div id="newLocationRails" style="display: none; margin-bottom: var(--space-4);">
+          <div style="display: flex; align-items: center; gap: var(--space-2); padding: var(--space-3); background: var(--success-50); border-radius: var(--radius-lg); border: 1px solid var(--success-500);">
+            <span class="material-symbols-rounded" style="color: var(--success-500);">check_circle</span>
+            <span style="font-size: var(--text-sm); color: var(--success-600);" id="newRailsText">PromptPay will be unlocked</span>
+          </div>
+        </div>
+        
+        <h3 class="form-section-title">Proof of Address</h3>
+        
+        <div class="upload-box" onclick="simulateUpload(this)">
+          <div class="upload-box__icon">
+            <span class="material-symbols-rounded">upload_file</span>
+          </div>
+          <h4>Upload Document</h4>
+          <p>Utility bill, bank statement, or government letter (within 3 months)</p>
+        </div>
+        
+        <div style="background: var(--blue-50); border-radius: var(--radius-lg); padding: var(--space-3); margin-top: var(--space-4);">
+          <div style="display: flex; gap: var(--space-2);">
+            <span class="material-symbols-rounded" style="color: var(--blue-500); font-size: 20px;">info</span>
+            <div>
+              <div style="font-size: var(--text-sm); font-weight: var(--font-medium); color: var(--navy-800); margin-bottom: var(--space-1);">Accepted Documents</div>
+              <ul style="font-size: var(--text-xs); color: var(--gray-600); margin: 0; padding-left: var(--space-4);">
+                <li>Utility bill (electricity, water, gas)</li>
+                <li>Bank or credit card statement</li>
+                <li>Government-issued letter</li>
+                <li>Rental agreement</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="screen__footer">
+        <a href="09-location-history.html" class="btn btn--primary btn--full">Submit for Verification</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

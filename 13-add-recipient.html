@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0B1F3A">
+  <title>Add Recipient - Glintz</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <div class="screen send-screen">
+      <header class="header" style="background: var(--gray-50);">
+        <div class="header__content">
+          <a href="12-select-recipient.html" class="header__btn">
+            <span class="material-symbols-rounded">arrow_back</span>
+          </a>
+          <h1 class="header__title">Add Recipient</h1>
+          <div class="header__spacer"></div>
+        </div>
+      </header>
+      
+      <div class="screen__content">
+        <p class="add-recipient-intro">Choose how you'd like to add a new recipient:</p>
+        
+        <div class="add-recipient-options">
+          <!-- Option 1: P2P Glintz User -->
+          <a href="14-add-recipient-p2p.html" class="add-recipient-option">
+            <div class="add-recipient-option__icon add-recipient-option__icon--teal">
+              <span class="material-symbols-rounded">alternate_email</span>
+            </div>
+            <div class="add-recipient-option__content">
+              <h4>Glintz User</h4>
+              <p>Send instantly with @username</p>
+              <div class="add-recipient-option__tags">
+                <span class="option-tag option-tag--success">Free</span>
+                <span class="option-tag option-tag--teal">Instant</span>
+              </div>
+            </div>
+            <span class="material-symbols-rounded add-recipient-option__arrow">chevron_right</span>
+          </a>
+          
+          <!-- Option 2: Email or Phone -->
+          <a href="15-add-recipient-local.html" class="add-recipient-option">
+            <div class="add-recipient-option__icon add-recipient-option__icon--purple">
+              <span class="material-symbols-rounded">contact_mail</span>
+            </div>
+            <div class="add-recipient-option__content">
+              <h4>Email or Phone</h4>
+              <p>Use local payment rails (PayNow, ACH)</p>
+              <div class="add-recipient-option__tags">
+                <span class="option-tag option-tag--success">Low Fee</span>
+                <span class="option-tag option-tag--purple">1-2 days</span>
+              </div>
+            </div>
+            <span class="material-symbols-rounded add-recipient-option__arrow">chevron_right</span>
+          </a>
+          
+          <!-- Option 3: Bank Transfer (SWIFT) -->
+          <a href="16-add-recipient-bank.html" class="add-recipient-option">
+            <div class="add-recipient-option__icon add-recipient-option__icon--navy">
+              <span class="material-symbols-rounded">account_balance</span>
+            </div>
+            <div class="add-recipient-option__content">
+              <h4>Bank Transfer</h4>
+              <p>International wire via SWIFT</p>
+              <div class="add-recipient-option__tags">
+                <span class="option-tag option-tag--gray">$25-45 Fee</span>
+                <span class="option-tag option-tag--gray">2-5 days</span>
+              </div>
+            </div>
+            <span class="material-symbols-rounded add-recipient-option__arrow">chevron_right</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>
+

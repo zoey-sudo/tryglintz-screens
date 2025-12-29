@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0B1F3A">
+  <title>KYC Upload - Glintz</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="screen onboarding-screen">
+      <header class="header">
+        <div class="header__content">
+          <a href="05-kyc-select.html" class="header__btn">
+            <span class="material-symbols-rounded">arrow_back</span>
+          </a>
+          <h1 class="header__title">Upload Documents</h1>
+          <div class="header__spacer"></div>
+        </div>
+      </header>
+      
+      <div class="screen__content">
+        <div class="progress-bar">
+          <div class="progress-bar__step active"></div>
+          <div class="progress-bar__step active"></div>
+          <div class="progress-bar__step active"></div>
+          <div class="progress-bar__step"></div>
+        </div>
+        
+        <h3 class="form-section-title">Passport Photos</h3>
+        
+        <div class="upload-box" onclick="simulateUpload(this)">
+          <div class="upload-box__icon">
+            <span class="material-symbols-rounded">photo_camera</span>
+          </div>
+          <h4>Front of Passport</h4>
+          <p>Tap to take photo or upload</p>
+        </div>
+        
+        <div class="upload-box" onclick="simulateUpload(this)">
+          <div class="upload-box__icon">
+            <span class="material-symbols-rounded">photo_camera</span>
+          </div>
+          <h4>Back of Passport</h4>
+          <p>Tap to take photo or upload</p>
+        </div>
+        
+        <h3 class="form-section-title">Selfie</h3>
+        
+        <div class="upload-box" onclick="simulateUpload(this)">
+          <div class="upload-box__icon">
+            <span class="material-symbols-rounded">face</span>
+          </div>
+          <h4>Take a Selfie</h4>
+          <p>Make sure your face is visible</p>
+        </div>
+      </div>
+      
+      <div class="screen__footer">
+        <a href="07-verifying.html" class="btn btn--primary btn--full">Continue</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

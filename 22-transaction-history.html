@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0B1F3A">
+  <title>Glintz - Activity</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-screen="transaction-history">
+  <div class="app-shell">
+    <div class="screen history-screen">
+      <header class="header" style="background: var(--gray-50);">
+        <div class="header__content">
+          <button class="header__btn" onclick="showScreen('dashboard')">
+            <span class="material-symbols-rounded">arrow_back</span>
+          </button>
+          <h1 class="header__title">Activity</h1>
+          <div class="header__spacer"></div>
+        </div>
+      </header>
+      
+      <div class="screen__content">
+        <!-- Filter Tabs -->
+        <div class="history-filters">
+          <button class="history-filter active" onclick="selectFilter(this, 'all')">All</button>
+          <button class="history-filter" onclick="selectFilter(this, 'sent')">Sent</button>
+          <button class="history-filter" onclick="selectFilter(this, 'received')">Received</button>
+          <button class="history-filter" onclick="selectFilter(this, 'added')">Added</button>
+        </div>
+        
+        <!-- TODAY Section -->
+        <div class="history-date">TODAY</div>
+        <div class="activity-item" onclick="showScreen('transaction-details')">
+          <div class="avatar avatar--sm avatar--teal">E</div>
+          <div class="activity-info">
+            <div class="activity-name">Emma Wilson</div>
+            <div class="activity-meta">
+              Smart Transfer • 2 min ago
+              <span class="status-badge status-badge--completed">
+                <span class="material-symbols-rounded">check_circle</span>
+                Completed
+              </span>
+            </div>
+          </div>
+          <div class="activity-amount">
+            <div class="activity-usd">-$500</div>
+            <div class="activity-local">S$668.50</div>
+          </div>
+        </div>
+        
+        <!-- YESTERDAY Section -->
+        <div class="history-date">YESTERDAY</div>
+        <div class="activity-item" onclick="showScreen('transaction-details')">
+          <div class="avatar avatar--sm avatar--teal">E</div>
+          <div class="activity-info">
+            <div class="activity-name">Emma Wilson</div>
+            <div class="activity-meta">
+              P2P Free • 1d ago
+              <span class="status-badge status-badge--pending">
+                <span class="material-symbols-rounded">schedule</span>
+                Pending
+              </span>
+            </div>
+          </div>
+          <div class="activity-amount">
+            <div class="activity-usd">-$200</div>
+            <div class="activity-local">S$268</div>
+          </div>
+        </div>
+        
+        <!-- THIS WEEK Section -->
+        <div class="history-date">THIS WEEK</div>
+        <div class="activity-item" onclick="showScreen('transaction-details')">
+          <div class="avatar avatar--sm avatar--purple">C</div>
+          <div class="activity-info">
+            <div class="activity-name">Carlos Mendez</div>
+            <div class="activity-meta">
+              Stablecoin • 3d ago
+              <span class="status-badge status-badge--completed">
+                <span class="material-symbols-rounded">check_circle</span>
+                Completed
+              </span>
+            </div>
+          </div>
+          <div class="activity-amount">
+            <div class="activity-usd">-$500</div>
+            <div class="activity-local">S$671</div>
+          </div>
+        </div>
+        
+        <div class="activity-item" onclick="showScreen('transaction-details')">
+          <div class="avatar avatar--sm avatar--blue">+</div>
+          <div class="activity-info">
+            <div class="activity-name">Top Up</div>
+            <div class="activity-meta">
+              PayNow • 7d ago
+              <span class="status-badge status-badge--completed">
+                <span class="material-symbols-rounded">check_circle</span>
+                Completed
+              </span>
+            </div>
+          </div>
+          <div class="activity-amount">
+            <div class="activity-usd" style="color: var(--success-500);">+S$2,000</div>
+            <div class="activity-local">= $1,490</div>
+          </div>
+        </div>
+        
+        <div class="activity-item" onclick="showScreen('transaction-details')">
+          <div class="avatar avatar--sm avatar--warning">J</div>
+          <div class="activity-info">
+            <div class="activity-name">Jordan Lee</div>
+            <div class="activity-meta">
+              Received • 7d ago
+              <span class="status-badge status-badge--completed">
+                <span class="material-symbols-rounded">check_circle</span>
+                Completed
+              </span>
+            </div>
+          </div>
+          <div class="activity-amount">
+            <div class="activity-usd" style="color: var(--success-500);">+$150</div>
+            <div class="activity-local">S$201</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    function selectFilter(button, filter) {
+      document.querySelectorAll('.history-filter').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      button.classList.add('active');
+      // Filter logic would go here
+    }
+  </script>
+</body>
+</html>
+

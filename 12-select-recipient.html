@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0B1F3A">
+  <title>Select Recipient - Glintz</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="screen send-screen">
+      <header class="header" style="background: var(--gray-50);">
+        <div class="header__content">
+          <a href="11-send-money.html" class="header__btn">
+            <span class="material-symbols-rounded">arrow_back</span>
+          </a>
+          <h1 class="header__title">Select Recipient</h1>
+          <div class="header__spacer"></div>
+        </div>
+      </header>
+      
+      <div class="screen__content">
+        <!-- Search Bar -->
+        <div class="recipient-search">
+          <span class="material-symbols-rounded recipient-search__icon">search</span>
+          <input type="text" class="recipient-search__input" placeholder="Search recipients...">
+        </div>
+        
+        <!-- Add New Recipient Button -->
+        <a href="13-add-recipient.html" class="btn-add-recipient">
+          <span class="material-symbols-rounded">add</span>
+          <span>Add New Recipient</span>
+        </a>
+        
+        <!-- Saved Recipients -->
+        <div class="recipient-section">
+          <h3 class="recipient-section__title">SAVED RECIPIENTS</h3>
+          
+          <div class="recipient-list">
+            <div class="recipient-item selected" onclick="selectRecipient(this)">
+              <div class="avatar avatar--teal">E</div>
+              <div class="recipient-item__info">
+                <div class="recipient-item__name">
+                  Emma Wilson
+                  <span class="recipient-badge recipient-badge--p2p">P2P</span>
+                </div>
+                <div class="recipient-item__account">Glintz • ****9876</div>
+              </div>
+              <div class="recipient-item__check">
+                <span class="material-symbols-rounded icon-filled">check_circle</span>
+              </div>
+            </div>
+            
+            <div class="recipient-item" onclick="selectRecipient(this)">
+              <div class="avatar avatar--purple">C</div>
+              <div class="recipient-item__info">
+                <div class="recipient-item__name">
+                  Carlos Mendez
+                  <span class="recipient-badge recipient-badge--p2p">P2P</span>
+                </div>
+                <div class="recipient-item__account">Glintz • ****5432</div>
+              </div>
+              <div class="recipient-item__check">
+                <span class="material-symbols-rounded icon-filled">check_circle</span>
+              </div>
+            </div>
+            
+            <div class="recipient-item" onclick="selectRecipient(this)">
+              <div class="avatar avatar--warning">J</div>
+              <div class="recipient-item__info">
+                <div class="recipient-item__name">John Smith</div>
+                <div class="recipient-item__account">DBS Bank • ****1234</div>
+              </div>
+              <div class="recipient-item__check">
+                <span class="material-symbols-rounded icon-filled">check_circle</span>
+              </div>
+            </div>
+            
+            <div class="recipient-item" onclick="selectRecipient(this)">
+              <div class="avatar avatar--blue">S</div>
+              <div class="recipient-item__info">
+                <div class="recipient-item__name">
+                  Sarah Lee
+                  <span class="recipient-badge recipient-badge--p2p">P2P</span>
+                </div>
+                <div class="recipient-item__account">Glintz • ****7890</div>
+              </div>
+              <div class="recipient-item__check">
+                <span class="material-symbols-rounded icon-filled">check_circle</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="screen__footer" style="background: var(--gray-50);">
+        <a href="17-routes.html" class="btn btn--primary btn--full">Continue</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

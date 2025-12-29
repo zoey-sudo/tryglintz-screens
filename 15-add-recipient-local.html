@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0B1F3A">
+  <title>Add via Email/Phone - Glintz</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="screen send-screen">
+      <header class="header" style="background: var(--gray-50);">
+        <div class="header__content">
+          <a href="13-add-recipient.html" class="header__btn">
+            <span class="material-symbols-rounded">arrow_back</span>
+          </a>
+          <h1 class="header__title">Add via Email/Phone</h1>
+          <div class="header__spacer"></div>
+        </div>
+      </header>
+      
+      <div class="screen__content">
+        <div class="add-form-header">
+          <div class="add-form-header__icon add-form-header__icon--purple">
+            <span class="material-symbols-rounded">contact_mail</span>
+          </div>
+          <h3>Local Payment Rails</h3>
+          <p>Send via PayNow, ACH, Faster Payments & more</p>
+        </div>
+        
+        <div class="input-wrapper">
+          <label class="input-label">Recipient Name</label>
+          <input type="text" class="input-field" placeholder="Full name as registered">
+        </div>
+        
+        <div class="input-wrapper">
+          <label class="input-label">Contact Method</label>
+          <div class="contact-method-tabs">
+            <button class="contact-method-tab active" onclick="selectContactMethod(this, 'email')">
+              <span class="material-symbols-rounded">email</span>
+              Email
+            </button>
+            <button class="contact-method-tab" onclick="selectContactMethod(this, 'phone')">
+              <span class="material-symbols-rounded">phone</span>
+              Phone
+            </button>
+          </div>
+        </div>
+        
+        <div class="input-wrapper" id="emailInput">
+          <label class="input-label">Email Address</label>
+          <input type="email" class="input-field" placeholder="recipient@email.com">
+        </div>
+        
+        <div class="input-wrapper" id="phoneInput" style="display: none;">
+          <label class="input-label">Phone Number</label>
+          <div class="input-with-icon">
+            <button class="country-code-btn" type="button">
+              <span>🇸🇬</span>
+              <span>+65</span>
+            </button>
+            <input type="tel" class="input-field input-field--phone" placeholder="9123 4567">
+          </div>
+        </div>
+        
+        <div class="input-wrapper">
+          <label class="input-label">Country</label>
+          <div class="select-wrapper">
+            <select class="input-field input-field--select">
+              <option value="SG">🇸🇬 Singapore (PayNow)</option>
+              <option value="US">🇺🇸 United States (ACH)</option>
+              <option value="GB">🇬🇧 United Kingdom (Faster Payments)</option>
+              <option value="TH">🇹🇭 Thailand (PromptPay)</option>
+            </select>
+            <span class="material-symbols-rounded select-icon">expand_more</span>
+          </div>
+        </div>
+        
+        <div class="input-wrapper">
+          <label class="input-label">Nickname (Optional)</label>
+          <input type="text" class="input-field" placeholder="e.g. Mom, Landlord">
+        </div>
+      </div>
+      
+      <div class="screen__footer" style="background: var(--gray-50);">
+        <a href="12-select-recipient.html" class="btn btn--primary btn--full">Add Recipient</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

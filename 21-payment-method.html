@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0B1F3A">
+  <title>Glintz - Payment Method</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-screen="payment-method">
+  <div class="app-shell">
+    <div class="screen onboarding-screen" style="background: var(--gray-50);">
+      <header class="header" style="background: var(--gray-50);">
+        <div class="header__content">
+          <button class="header__btn" onclick="showScreen('add-money')">
+            <span class="material-symbols-rounded">arrow_back</span>
+          </button>
+          <h1 class="header__title">Payment Method</h1>
+          <div class="header__spacer"></div>
+        </div>
+      </header>
+      <div class="screen__content payment-method-list">
+        <!-- Instant Payment Section -->
+        <div class="payment-method-section">
+          <h4 class="payment-method-section__title">INSTANT PAYMENT</h4>
+          
+          <div class="payment-method-option selected" onclick="selectPaymentMethodScreen(this, 'PayNow')">
+            <div class="payment-method-option__icon payment-method-option__icon--teal">
+              <span class="material-symbols-rounded">account_balance</span>
+            </div>
+            <div class="payment-method-option__content">
+              <h4>PayNow</h4>
+              <p>Transfer instantly via PayNow QR</p>
+              <div class="payment-method-option__tags">
+                <span class="method-tag method-tag--teal">Instant</span>
+                <span class="method-tag method-tag--gray">No fees</span>
+              </div>
+            </div>
+            <div class="payment-method-option__check"></div>
+          </div>
+          
+          <div class="payment-method-option" onclick="selectPaymentMethodScreen(this, 'GrabPay')">
+            <div class="payment-method-option__icon payment-method-option__icon--blue">
+              <span class="material-symbols-rounded">wallet</span>
+            </div>
+            <div class="payment-method-option__content">
+              <h4>GrabPay</h4>
+              <p>Pay with your GrabPay balance</p>
+              <div class="payment-method-option__tags">
+                <span class="method-tag method-tag--teal">Instant</span>
+                <span class="method-tag method-tag--gray">1% fee</span>
+              </div>
+            </div>
+            <div class="payment-method-option__check"></div>
+          </div>
+        </div>
+        
+        <!-- Card Payment Section -->
+        <div class="payment-method-section">
+          <h4 class="payment-method-section__title">CARD PAYMENT</h4>
+          
+          <div class="payment-method-option" onclick="selectPaymentMethodScreen(this, 'Debit / Credit Card')">
+            <div class="payment-method-option__icon payment-method-option__icon--navy">
+              <span class="material-symbols-rounded">credit_card</span>
+            </div>
+            <div class="payment-method-option__content">
+              <h4>Debit / Credit Card</h4>
+              <p>Visa, Mastercard, AMEX</p>
+              <div class="payment-method-option__tags">
+                <span class="method-tag method-tag--teal">Instant</span>
+                <span class="method-tag method-tag--gray">1.5% fee</span>
+              </div>
+            </div>
+            <div class="payment-method-option__check"></div>
+          </div>
+        </div>
+        
+        <!-- Bank Transfer Section -->
+        <div class="payment-method-section">
+          <h4 class="payment-method-section__title">BANK TRANSFER</h4>
+          
+          <div class="payment-method-option" onclick="selectPaymentMethodScreen(this, 'FAST Transfer')">
+            <div class="payment-method-option__icon payment-method-option__icon--purple">
+              <span class="material-symbols-rounded">speed</span>
+            </div>
+            <div class="payment-method-option__content">
+              <h4>FAST Transfer</h4>
+              <p>Instant bank-to-bank transfer</p>
+              <div class="payment-method-option__tags">
+                <span class="method-tag method-tag--teal">Instant</span>
+                <span class="method-tag method-tag--gray">No fees</span>
+              </div>
+            </div>
+            <div class="payment-method-option__check"></div>
+          </div>
+        </div>
+      </div>
+      <div class="screen__footer" style="background: var(--gray-50);">
+        <button class="btn btn--primary btn--full" onclick="goBackToAddMoney()">Select</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    let selectedPaymentMethod = 'PayNow';
+
+    function selectPaymentMethodScreen(element, methodName) {
+      // Remove selected class from all options
+      document.querySelectorAll('.payment-method-option').forEach(item => {
+        item.classList.remove('selected');
+      });
+      
+      // Add selected class to clicked option
+      element.classList.add('selected');
+      selectedPaymentMethod = methodName;
+    }
+
+    function goBackToAddMoney() {
+      // Get currency from URL or default to SGD
+      const urlParams = new URLSearchParams(window.location.search);
+      const currency = urlParams.get('currency') || 'SGD';
+      
+      // Navigate back to add-money screen with selected method
+      window.location.href = `20-add-money.html?method=${encodeURIComponent(selectedPaymentMethod)}&currency=${currency}`;
+    }
+  </script>
+</body>
+</html>

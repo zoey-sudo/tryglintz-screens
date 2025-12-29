@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0B1F3A">
+  <title>Glintz - Details</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-screen="transaction-details">
+  <div class="app-shell">
+    <div class="screen details-screen">
+      <header class="header" style="background: var(--gray-50);">
+        <div class="header__content">
+          <button class="header__btn" onclick="showScreen('transaction-history')">
+            <span class="material-symbols-rounded">arrow_back</span>
+          </button>
+          <h1 class="header__title">Details</h1>
+          <div class="header__spacer"></div>
+        </div>
+      </header>
+      
+      <div class="screen__content">
+        <div class="details-header">
+          <div class="avatar avatar--lg avatar--teal">E</div>
+          <div class="details-header__amount">-$500.00</div>
+          <div class="status-badge status-badge--completed details-header__status">
+            <span class="material-symbols-rounded">check_circle</span>
+            Completed
+          </div>
+        </div>
+        
+        <!-- Transfer Info Section -->
+        <div class="details-card">
+          <div class="details-card__title">Transfer Info</div>
+          <div class="details-row">
+            <div class="details-row__label">To</div>
+            <div class="details-row__value">Emma Wilson</div>
+          </div>
+          <div class="details-row">
+            <div class="details-row__label">Bank</div>
+            <div class="details-row__value">DBS Bank Singapore</div>
+          </div>
+          <div class="details-row">
+            <div class="details-row__label">Account</div>
+            <div class="details-row__value">.... 4521</div>
+          </div>
+          <div class="details-row">
+            <div class="details-row__label">Route</div>
+            <div class="details-row__value">Smart Transfer</div>
+          </div>
+        </div>
+        
+        <!-- Amount Details Section -->
+        <div class="details-card">
+          <div class="details-card__title">Amount Details</div>
+          <div class="details-row">
+            <div class="details-row__label">You Sent</div>
+            <div class="details-row__value">$500.00 USD</div>
+          </div>
+          <div class="details-row">
+            <div class="details-row__label">Exchange Rate</div>
+            <div class="details-row__value">1 USD = 1.34 SGD</div>
+          </div>
+          <div class="details-row">
+            <div class="details-row__label">Fee</div>
+            <div class="details-row__value">$1.50</div>
+          </div>
+          <div class="details-row">
+            <div class="details-row__label">Recipient Got</div>
+            <div class="details-row__value">S$668.50</div>
+          </div>
+        </div>
+        
+        <!-- Timeline Section -->
+        <div class="details-card">
+          <div class="details-card__title">Timeline</div>
+          <div class="details-row">
+            <div class="details-row__label">Initiated</div>
+            <div class="details-row__value">Dec 29, 10:32 AM</div>
+          </div>
+          <div class="details-row">
+            <div class="details-row__label">Completed</div>
+            <div class="details-row__value">Dec 29, 10:34 AM</div>
+          </div>
+          <div class="details-row">
+            <div class="details-row__label">Reference</div>
+            <div class="details-row__value">GLZ-2024-XK9F2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
+

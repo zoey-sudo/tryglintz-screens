@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0B1F3A">
+  <title>Glintz - Add Money</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-screen="add-money">
+  <div class="app-shell">
+    <div class="screen add-money-screen">
+      <header class="header" style="background: var(--gray-50);">
+        <div class="header__content">
+          <button class="header__btn" onclick="showScreen('dashboard')">
+            <span class="material-symbols-rounded">arrow_back</span>
+          </button>
+          <h1 class="header__title">Add Money</h1>
+          <div class="header__spacer"></div>
+        </div>
+      </header>
+      <div class="screen__content">
+        <div class="amount-display">
+          <span class="amount-label">Enter amount</span>
+          <div class="amount-input-wrapper">
+            <span class="amount-currency" id="amountCurrency">S$</span>
+            <input type="text" class="amount-input" id="amountInput" value="100" placeholder="0">
+          </div>
+          
+          <div class="currency-badge" onclick="openCurrencyModal()">
+            <span class="currency-badge__flag" id="currencyBadgeFlag">🇸🇬</span>
+            <span class="currency-badge__code" id="currencyBadgeCode">SGD</span>
+            <span class="material-symbols-rounded" style="font-size: 18px; color: var(--gray-400);">expand_more</span>
+          </div>
+          
+          <div class="quick-amounts">
+            <button class="quick-amount-btn" onclick="setQuickAmount(50, this)">S$50</button>
+            <button class="quick-amount-btn active" onclick="setQuickAmount(100, this)">S$100</button>
+            <button class="quick-amount-btn" onclick="setQuickAmount(200, this)">S$200</button>
+            <button class="quick-amount-btn" onclick="setQuickAmount(500, this)">S$500</button>
+          </div>
+        </div>
+        
+        <div class="payment-method-selector" onclick="goToPaymentMethod()">
+          <div class="payment-method-selector__header">
+            <div class="payment-method-selector__left">
+              <div class="payment-method-selector__icon">
+                <span class="material-symbols-rounded">account_balance</span>
+              </div>
+              <div class="payment-method-selector__info">
+                <h4 id="paymentMethodName">PayNow</h4>
+                <p id="paymentMethodDesc">Instant • No fees</p>
+              </div>
+            </div>
+            <span class="material-symbols-rounded payment-method-selector__arrow">chevron_right</span>
+          </div>
+        </div>
+      </div>
+      <div class="screen__footer" style="background: var(--gray-50);">
+        <button class="btn btn--primary btn--full" onclick="confirmAddMoney()" id="confirmBtn">Add S$<span id="confirmAmount">100.00</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Currency Modal -->
+  <div class="modal-overlay" id="currencyModal">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h3 class="modal-title">Select Currency</h3>
+        <button class="modal-close" onclick="closeCurrencyModal()">
+          <span class="material-symbols-rounded">close</span>
+        </button>
+      </div>
+      <div class="currency-modal-list">
+        <div class="currency-modal-option" onclick="selectCurrency('SGD', '🇸🇬', 'S$')">
+          <span class="currency-modal-flag">🇸🇬</span>
+          <div class="currency-modal-info">
+            <div class="currency-modal-name">Singapore Dollar</div>
+            <div class="currency-modal-balance">SGD</div>
+          </div>
+        </div>
+        <div class="currency-modal-option" onclick="selectCurrency('USD', '🇺🇸', '$')">
+          <span class="currency-modal-flag">🇺🇸</span>
+          <div class="currency-modal-info">
+            <div class="currency-modal-name">US Dollar</div>
+            <div class="currency-modal-balance">USD</div>
+          </div>
+        </div>
+        <div class="currency-modal-option" onclick="selectCurrency('EUR', '🇪🇺', '€')">
+          <span class="currency-modal-flag">🇪🇺</span>
+          <div class="currency-modal-info">
+            <div class="currency-modal-name">Euro</div>
+            <div class="currency-modal-balance">EUR</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    let currentCurrency = { code: 'SGD', flag: '🇸🇬', symbol: 'S$' };
+    let currentAmount = 100;
+    let selectedPaymentMethod = { name: 'PayNow', desc: 'Instant • No fees' };
+
+    // Check for selected payment method from previous screen
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const method = urlParams.get('method');
+      const currency = urlParams.get('currency');
+      
+      if (method) {
+        const methodName = document.getElementById('paymentMethodName');
+        const methodDesc = document.getElementById('paymentMethodDesc');
+        if (methodName) methodName.textContent = method;
+        if (methodDesc) {
+          // Update description based on method
+          if (method === 'PayNow') {
+            methodDesc.textContent = 'Instant • No fees';
+          } else if (method === 'GrabPay') {
+            methodDesc.textContent = 'Instant • 1% fee';
+          } else if (method === 'Debit / Credit Card') {
+            methodDesc.textContent = 'Instant • 1.5% fee';
+          } else if (method === 'FAST Transfer') {
+            methodDesc.textContent = 'Instant • No fees';
+          }
+        }
+        selectedPaymentMethod = { name: method, desc: methodDesc ? methodDesc.textContent : '' };
+      }
+      
+      if (currency) {
+        const currencyMap = {
+          'SGD': { flag: '🇸🇬', symbol: 'S$' },
+          'USD': { flag: '🇺🇸', symbol: '$' },
+          'EUR': { flag: '🇪🇺', symbol: '€' }
+        };
+        if (currencyMap[currency]) {
+          currentCurrency = { code: currency, ...currencyMap[currency] };
+          updateCurrencyDisplay();
+        }
+      }
+      
+      updateConfirmButton();
+    });
+
+    function openCurrencyModal() {
+      const modal = document.getElementById('currencyModal');
+      if (modal) modal.classList.add('open');
+    }
+
+    function closeCurrencyModal() {
+      const modal = document.getElementById('currencyModal');
+      if (modal) modal.classList.remove('open');
+    }
+
+    function selectCurrency(code, flag, symbol) {
+      currentCurrency = { code, flag, symbol };
+      updateCurrencyDisplay();
+      closeCurrencyModal();
+      updateConfirmButton();
+    }
+
+    function updateCurrencyDisplay() {
+      const flagEl = document.getElementById('currencyBadgeFlag');
+      const codeEl = document.getElementById('currencyBadgeCode');
+      const symbolEl = document.getElementById('amountCurrency');
+      
+      if (flagEl) flagEl.textContent = currentCurrency.flag;
+      if (codeEl) codeEl.textContent = currentCurrency.code;
+      if (symbolEl) symbolEl.textContent = currentCurrency.symbol;
+      
+      // Update quick amount buttons
+      const amounts = [50, 100, 200, 500];
+      const quickButtons = document.querySelectorAll('.quick-amount-btn');
+      quickButtons.forEach((btn, index) => {
+        if (index < amounts.length) {
+          btn.textContent = currentCurrency.symbol + amounts[index];
+        }
+      });
+    }
+
+    function setQuickAmount(amount, button) {
+      currentAmount = amount;
+      const input = document.getElementById('amountInput');
+      if (input) input.value = amount;
+      
+      // Update active state
+      document.querySelectorAll('.quick-amount-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      if (button) button.classList.add('active');
+      
+      updateConfirmButton();
+    }
+
+    function updateConfirmButton() {
+      const input = document.getElementById('amountInput');
+      const confirmAmount = document.getElementById('confirmAmount');
+      const confirmBtn = document.getElementById('confirmBtn');
+      
+      if (input) {
+        input.addEventListener('input', function() {
+          currentAmount = parseFloat(this.value) || 0;
+          updateConfirmButton();
+        });
+      }
+      
+      if (confirmAmount) {
+        confirmAmount.textContent = currentAmount.toFixed(2);
+      }
+      
+      if (confirmBtn) {
+        confirmBtn.textContent = `Add ${currentCurrency.symbol}${currentAmount.toFixed(2)}`;
+      }
+    }
+
+    function goToPaymentMethod() {
+      // Navigate to payment method screen with current currency
+      window.location.href = `21-payment-method.html?currency=${currentCurrency.code}`;
+    }
+
+    function confirmAddMoney() {
+      // Navigate to success screen or dashboard
+      showScreen('dashboard');
+    }
+
+    // Close modal when clicking overlay
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('currencyModal');
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            closeCurrencyModal();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

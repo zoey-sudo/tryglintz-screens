@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0B1F3A">
+  <title>Select Currency - Glintz</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="screen send-screen">
+      <header class="header" style="background: var(--gray-50);">
+        <div class="header__content">
+          <a href="08-dashboard.html" class="header__btn">
+            <span class="material-symbols-rounded">arrow_back</span>
+          </a>
+          <h1 class="header__title">Select Currency</h1>
+          <div class="header__spacer"></div>
+        </div>
+      </header>
+      
+      <div class="screen__content">
+        <!-- Search Bar -->
+        <div class="recipient-search">
+          <span class="material-symbols-rounded recipient-search__icon">search</span>
+          <input type="text" class="recipient-search__input" id="currencySearch" placeholder="Search currency...">
+        </div>
+        
+        <!-- Currency List -->
+        <div class="currency-list" id="currencyList">
+          <div class="currency-item" data-currency="SGD" data-name="Singapore Dollar" data-symbol="S$" onclick="selectCurrencyItem('SGD', '🇸🇬', 'S$')">
+            <span class="currency-item__flag">🇸🇬</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Singapore Dollar</div>
+              <div class="currency-item__code">SGD</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="USD" data-name="US Dollar" data-symbol="$" onclick="selectCurrencyItem('USD', '🇺🇸', '$')">
+            <span class="currency-item__flag">🇺🇸</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">US Dollar</div>
+              <div class="currency-item__code">USD</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="EUR" data-name="Euro" data-symbol="€" onclick="selectCurrencyItem('EUR', '🇪🇺', '€')">
+            <span class="currency-item__flag">🇪🇺</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Euro</div>
+              <div class="currency-item__code">EUR</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="GBP" data-name="British Pound" data-symbol="£" onclick="selectCurrencyItem('GBP', '🇬🇧', '£')">
+            <span class="currency-item__flag">🇬🇧</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">British Pound</div>
+              <div class="currency-item__code">GBP</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="JPY" data-name="Japanese Yen" data-symbol="¥" onclick="selectCurrencyItem('JPY', '🇯🇵', '¥')">
+            <span class="currency-item__flag">🇯🇵</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Japanese Yen</div>
+              <div class="currency-item__code">JPY</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="AUD" data-name="Australian Dollar" data-symbol="A$" onclick="selectCurrencyItem('AUD', '🇦🇺', 'A$')">
+            <span class="currency-item__flag">🇦🇺</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Australian Dollar</div>
+              <div class="currency-item__code">AUD</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="CAD" data-name="Canadian Dollar" data-symbol="C$" onclick="selectCurrencyItem('CAD', '🇨🇦', 'C$')">
+            <span class="currency-item__flag">🇨🇦</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Canadian Dollar</div>
+              <div class="currency-item__code">CAD</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="CHF" data-name="Swiss Franc" data-symbol="CHF" onclick="selectCurrencyItem('CHF', '🇨🇭', 'CHF')">
+            <span class="currency-item__flag">🇨🇭</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Swiss Franc</div>
+              <div class="currency-item__code">CHF</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="CNY" data-name="Chinese Yuan" data-symbol="¥" onclick="selectCurrencyItem('CNY', '🇨🇳', '¥')">
+            <span class="currency-item__flag">🇨🇳</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Chinese Yuan</div>
+              <div class="currency-item__code">CNY</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="HKD" data-name="Hong Kong Dollar" data-symbol="HK$" onclick="selectCurrencyItem('HKD', '🇭🇰', 'HK$')">
+            <span class="currency-item__flag">🇭🇰</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Hong Kong Dollar</div>
+              <div class="currency-item__code">HKD</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="NZD" data-name="New Zealand Dollar" data-symbol="NZ$" onclick="selectCurrencyItem('NZD', '🇳🇿', 'NZ$')">
+            <span class="currency-item__flag">🇳🇿</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">New Zealand Dollar</div>
+              <div class="currency-item__code">NZD</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="THB" data-name="Thai Baht" data-symbol="฿" onclick="selectCurrencyItem('THB', '🇹🇭', '฿')">
+            <span class="currency-item__flag">🇹🇭</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Thai Baht</div>
+              <div class="currency-item__code">THB</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="MYR" data-name="Malaysian Ringgit" data-symbol="RM" onclick="selectCurrencyItem('MYR', '🇲🇾', 'RM')">
+            <span class="currency-item__flag">🇲🇾</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Malaysian Ringgit</div>
+              <div class="currency-item__code">MYR</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="IDR" data-name="Indonesian Rupiah" data-symbol="Rp" onclick="selectCurrencyItem('IDR', '🇮🇩', 'Rp')">
+            <span class="currency-item__flag">🇮🇩</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Indonesian Rupiah</div>
+              <div class="currency-item__code">IDR</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="INR" data-name="Indian Rupee" data-symbol="₹" onclick="selectCurrencyItem('INR', '🇮🇳', '₹')">
+            <span class="currency-item__flag">🇮🇳</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Indian Rupee</div>
+              <div class="currency-item__code">INR</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="KRW" data-name="South Korean Won" data-symbol="₩" onclick="selectCurrencyItem('KRW', '🇰🇷', '₩')">
+            <span class="currency-item__flag">🇰🇷</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">South Korean Won</div>
+              <div class="currency-item__code">KRW</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="PHP" data-name="Philippine Peso" data-symbol="₱" onclick="selectCurrencyItem('PHP', '🇵🇭', '₱')">
+            <span class="currency-item__flag">🇵🇭</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Philippine Peso</div>
+              <div class="currency-item__code">PHP</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="VND" data-name="Vietnamese Dong" data-symbol="₫" onclick="selectCurrencyItem('VND', '🇻🇳', '₫')">
+            <span class="currency-item__flag">🇻🇳</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Vietnamese Dong</div>
+              <div class="currency-item__code">VND</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="BRL" data-name="Brazilian Real" data-symbol="R$" onclick="selectCurrencyItem('BRL', '🇧🇷', 'R$')">
+            <span class="currency-item__flag">🇧🇷</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Brazilian Real</div>
+              <div class="currency-item__code">BRL</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="MXN" data-name="Mexican Peso" data-symbol="MX$" onclick="selectCurrencyItem('MXN', '🇲🇽', 'MX$')">
+            <span class="currency-item__flag">🇲🇽</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">Mexican Peso</div>
+              <div class="currency-item__code">MXN</div>
+            </div>
+          </div>
+          
+          <div class="currency-item" data-currency="ZAR" data-name="South African Rand" data-symbol="R" onclick="selectCurrencyItem('ZAR', '🇿🇦', 'R')">
+            <span class="currency-item__flag">🇿🇦</span>
+            <div class="currency-item__info">
+              <div class="currency-item__name">South African Rand</div>
+              <div class="currency-item__code">ZAR</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Search functionality
+    const searchInput = document.getElementById('currencySearch');
+    const currencyList = document.getElementById('currencyList');
+    const currencyItems = currencyList.querySelectorAll('.currency-item');
+    
+    searchInput.addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase().trim();
+      
+      currencyItems.forEach(item => {
+        const currencyName = item.dataset.name.toLowerCase();
+        const currencyCode = item.dataset.currency.toLowerCase();
+        
+        if (currencyName.includes(searchTerm) || currencyCode.includes(searchTerm)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+    
+    // Select currency and navigate back
+    function selectCurrencyItem(code, flag, symbol) {
+      // Store selected currency (you can use localStorage or pass via URL)
+      // For now, just navigate back to dashboard
+      // In a real app, you would create the account with this currency
+      window.location.href = '08-dashboard.html';
+    }
+  </script>
+</body>
+</html>
+

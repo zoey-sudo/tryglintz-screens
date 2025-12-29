@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0B1F3A">
+  <title>Dashboard - Glintz</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <div class="sidebar-overlay"></div>
+    <div class="sidebar">
+      <div class="sidebar__header">
+        <div class="sidebar__user">
+          <div class="avatar avatar--teal">A</div>
+          <div class="sidebar__user-info">
+            <h3>Alex Chen</h3>
+            <p>alex@demo.glintz.com</p>
+          </div>
+        </div>
+        <button class="sidebar__close" onclick="closeSidebar()">
+          <span class="material-symbols-rounded">close</span>
+        </button>
+      </div>
+      <nav class="sidebar__nav">
+        <a href="08-dashboard.html" class="sidebar__nav-item active">
+          <span class="material-symbols-rounded icon-filled">home</span>
+          Home
+        </a>
+        <a href="11-send-money.html" class="sidebar__nav-item">
+          <span class="material-symbols-rounded">send</span>
+          Send Money
+        </a>
+        <a href="22-transaction-history.html" class="sidebar__nav-item" onclick="closeSidebar()">
+          <span class="material-symbols-rounded">receipt_long</span>
+          Activity
+        </a>
+        <a href="09-location-history.html" class="sidebar__nav-item">
+          <span class="material-symbols-rounded">location_on</span>
+          Location History
+        </a>
+        <button class="sidebar__nav-item">
+          <span class="material-symbols-rounded">settings</span>
+          Settings
+        </button>
+      </nav>
+      <div class="sidebar__footer">
+        <a href="01-welcome.html" class="sidebar__logout">
+          <span class="material-symbols-rounded">logout</span>
+          Logout
+        </a>
+        <p class="sidebar__version">Glintz v1.0.0 (Beta)</p>
+      </div>
+    </div>
+
+    <!-- Account Modal -->
+    <div class="modal-overlay" id="accountModal">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 class="modal-title">Select Account</h3>
+          <button class="modal-close" onclick="closeAccountModal()">
+            <span class="material-symbols-rounded">close</span>
+          </button>
+        </div>
+        <div class="currency-modal-list">
+          <div class="currency-modal-option" onclick="selectAccount('SGD', '🇸🇬', 'S$', '712.46')">
+            <span class="currency-modal-flag">🇸🇬</span>
+            <div class="currency-modal-info">
+              <div class="currency-modal-name">Singapore Dollar</div>
+              <div class="currency-modal-balance">Balance: S$712.46</div>
+            </div>
+          </div>
+          <div class="currency-modal-option" onclick="selectAccount('USD', '🇺🇸', '$', '214.64')">
+            <span class="currency-modal-flag">🇺🇸</span>
+            <div class="currency-modal-info">
+              <div class="currency-modal-name">US Dollar</div>
+              <div class="currency-modal-balance">Balance: $214.64</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn--secondary btn--full" onclick="closeAccountModal(); window.location.href='24-select-currency.html'">
+            <span class="material-symbols-rounded" style="font-size: 20px; margin-right: var(--space-2);">add</span>
+            Add new Account
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Location Change Modal -->
+    <div class="location-modal-overlay" id="locationNotification">
+      <div class="location-modal-sheet">
+        <button class="location-modal-close" onclick="hideLocationNotification()">
+          <span class="material-symbols-rounded">close</span>
+        </button>
+        <div class="location-modal-title">New Location Detected!</div>
+        <div class="location-modal-desc">We noticed you're now in Thailand. Update your location to unlock local payment rails.</div>
+        <div class="location-modal-country">
+          <span class="location-modal-flag">🇹🇭</span>
+          <span class="location-modal-name">Thailand</span>
+          <span class="location-modal-tag">PromptPay</span>
+        </div>
+        <div class="location-modal-actions">
+          <button class="btn btn--secondary" onclick="hideLocationNotification()">Later</button>
+          <a href="10-update-location.html" class="btn btn--primary" onclick="hideLocationNotification()">Update Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen dashboard-screen">
+      <div class="dashboard-header">
+        <div class="dashboard-header__top">
+          <button class="dashboard-header__menu" onclick="openSidebar()">
+            <span class="material-symbols-rounded">menu</span>
+          </button>
+          <div class="dashboard-header__user">
+            <div>
+              <div class="dashboard-header__greeting">Good morning</div>
+              <div class="dashboard-header__name">Alex Chen</div>
+            </div>
+          </div>
+          <div class="dashboard-header__actions">
+            <button class="dashboard-icon-btn" onclick="showLocationNotification()" title="Demo: Show location notification">
+              <span class="material-symbols-rounded">notifications</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="balance-card">
+          <div class="balance-card__header">
+            <span class="balance-card__label">Available Balance</span>
+            <button class="balance-card__toggle" onclick="toggleBalance()">
+              <span class="material-symbols-rounded" id="balanceToggleIcon">visibility</span>
+            </button>
+          </div>
+          <div class="balance-card__amount" onclick="openAccountModal()">
+            <span class="balance-card__currency" id="dashCurrencySymbol">S$</span>
+            <span class="balance-card__value" id="balanceValue" data-balance="712.46">712.46</span>
+            <div class="balance-card__selector">
+              <span id="dashCurrencyCode">SGD</span>
+              <span class="material-symbols-rounded">expand_more</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="quick-actions">
+          <a href="11-send-money.html" class="quick-action-btn">
+            <span class="material-symbols-rounded">send</span>
+            <span>Send</span>
+          </a>
+          <a href="20-add-money.html" class="quick-action-btn">
+            <span class="material-symbols-rounded">add</span>
+            <span>Add</span>
+          </a>
+          <button class="quick-action-btn">
+            <span class="material-symbols-rounded">swap_horiz</span>
+            <span>Convert</span>
+          </button>
+          <button class="quick-action-btn">
+            <span class="material-symbols-rounded">more_horiz</span>
+            <span>More</span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="dashboard-content">
+        <div class="section-header">
+          <h2 class="section-title">Recent Activity</h2>
+          <a href="22-transaction-history.html" class="section-link">See all</a>
+        </div>
+        
+        <div class="activity-item">
+          <div class="avatar avatar--sm avatar--teal">E</div>
+          <div class="activity-info">
+            <div class="activity-name">Emma Wilson</div>
+            <div class="activity-meta">
+              P2P Free • 1d ago
+              <span class="status-badge status-badge--pending">
+                <span class="material-symbols-rounded">schedule</span>
+                Pending
+              </span>
+            </div>
+          </div>
+          <div class="activity-amount">
+            <div class="activity-usd" data-original="-$200">-$200</div>
+            <div class="activity-local" data-original="S$268">S$268</div>
+          </div>
+        </div>
+        
+        <div class="activity-item">
+          <div class="avatar avatar--sm avatar--purple">C</div>
+          <div class="activity-info">
+            <div class="activity-name">Carlos Mendez</div>
+            <div class="activity-meta">
+              Stablecoin • 3d ago
+              <span class="status-badge status-badge--completed">
+                <span class="material-symbols-rounded">check_circle</span>
+                Completed
+              </span>
+            </div>
+          </div>
+          <div class="activity-amount">
+            <div class="activity-usd" data-original="-$500">-$500</div>
+            <div class="activity-local" data-original="S$671">S$671</div>
+          </div>
+        </div>
+        
+        <div class="activity-item">
+          <div class="avatar avatar--sm avatar--navy">M</div>
+          <div class="activity-info">
+            <div class="activity-name">Michael Brown</div>
+            <div class="activity-meta">
+              SWIFT • 5d ago
+              <span class="status-badge status-badge--rejected">
+                <span class="material-symbols-rounded">cancel</span>
+                Rejected
+              </span>
+            </div>
+          </div>
+          <div class="activity-amount">
+            <div class="activity-usd" data-original="-$1,200">-$1,200</div>
+            <div class="activity-local" data-original="S$1,610">S$1,610</div>
+          </div>
+        </div>
+        
+        <div class="activity-item">
+          <div class="avatar avatar--sm avatar--blue">+</div>
+          <div class="activity-info">
+            <div class="activity-name">Top Up</div>
+            <div class="activity-meta">
+              PayNow • 7d ago
+              <span class="status-badge status-badge--completed">
+                <span class="material-symbols-rounded">check_circle</span>
+                Completed
+              </span>
+            </div>
+          </div>
+          <div class="activity-amount">
+            <div class="activity-usd" style="color: var(--success-500);" data-original="+S$2,000">+S$2,000</div>
+            <div class="activity-local" data-original="≈ $1,490">≈ $1,490</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0B1F3A">
+  <title>Add Glintz User - Glintz</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <div class="screen send-screen">
+      <header class="header" style="background: var(--gray-50);">
+        <div class="header__content">
+          <a href="13-add-recipient.html" class="header__btn">
+            <span class="material-symbols-rounded">arrow_back</span>
+          </a>
+          <h1 class="header__title">Add Glintz User</h1>
+          <div class="header__spacer"></div>
+        </div>
+      </header>
+      
+      <div class="screen__content">
+        <div class="add-form-header">
+          <div class="add-form-header__icon add-form-header__icon--teal">
+            <span class="material-symbols-rounded">alternate_email</span>
+          </div>
+          <h3>Find by @username</h3>
+          <p>Enter their Glintz ID to send money instantly for free</p>
+        </div>
+        
+        <div class="input-wrapper">
+          <label class="input-label">Glintz Username</label>
+          <div class="input-with-icon">
+            <span class="input-icon">@</span>
+            <input type="text" class="input-field input-field--icon" placeholder="username">
+          </div>
+        </div>
+        
+        <div class="input-wrapper">
+          <label class="input-label">Nickname (Optional)</label>
+          <input type="text" class="input-field" placeholder="e.g. Mom, Landlord">
+        </div>
+        
+        <!-- User Found Preview -->
+        <div class="user-found-preview" style="display: none;">
+          <div class="avatar avatar--teal">A</div>
+          <div class="user-found-preview__info">
+            <div class="user-found-preview__name">Alex Johnson</div>
+            <div class="user-found-preview__id">@alexj</div>
+          </div>
+          <span class="material-symbols-rounded" style="color: var(--success-500);">verified</span>
+        </div>
+      </div>
+      
+      <div class="screen__footer" style="background: var(--gray-50);">
+        <a href="12-select-recipient.html" class="btn btn--primary btn--full">Add Recipient</a>
+      </div>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
