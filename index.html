@@ -30,12 +30,13 @@
       background: linear-gradient(135deg, #0B1F3A 0%, #1A3A5C 100%);
       min-height: 100vh;
       color: #FFFFFF;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
     
     .app-layout {
       display: flex;
-      height: 100vh;
+      /*height: 100vh;*/
       gap: 0;
     }
     
@@ -43,17 +44,17 @@
     .viewer-container {
       flex: 1;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       padding: 40px;
       padding-right: calc(var(--nav-width) + 40px);
       margin-right: 0;
       position: relative;
+      min-height: 100vh;
     }
     
     .viewer-wrapper {
       width: 430px;
-      height: 1080px;
       background: #000;
       border-radius: 24px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -66,21 +67,54 @@
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(11, 31, 58, 0.95);
+      background: #0B1F3A;
       backdrop-filter: blur(10px);
       padding: 16px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      z-index: 10;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
       height: 56px;
       box-sizing: border-box;
+      min-height: 56px;
+    }
+    
+    .mobile-menu-toggle {
+      display: flex;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #FFFFFF;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      z-index: 1001;
+      flex-shrink: 0;
+    }
+    
+    .mobile-menu-toggle:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .mobile-menu-toggle:active {
+      transform: scale(0.95);
+    }
+    
+    .mobile-menu-toggle .material-symbols-rounded {
+      font-size: 24px;
+      font-weight: 500;
+      color: #FFFFFF;
     }
     
     .viewer-title {
       font-size: 0.875rem;
       font-weight: 600;
+      color: #FFFFFF;
       opacity: 0.9;
     }
     
@@ -103,21 +137,11 @@
     }
     
     .screen-viewer {
-      width: 100%;
-      height: calc(100% - 56px);
+      width: 430px;
+      height: 980px;
       margin-top: 56px;
       border: none;
       display: block;
-      overflow: hidden;
-    }
-    
-    .screen-viewer::-webkit-scrollbar {
-      display: none;
-    }
-    
-    .screen-viewer {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
     }
     
     .viewer-placeholder {
@@ -125,7 +149,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: calc(100% - 56px);
+      width: 430px;
+      height: 980px;
       margin-top: 56px;
       text-align: center;
       padding: 40px;
@@ -164,6 +189,23 @@
       top: 0;
       padding: 16px;
       z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .nav-overlay.active {
+      opacity: 1;
+      visibility: visible;
     }
 
     .nav-panel::-webkit-scrollbar {
@@ -261,6 +303,42 @@
       background: rgba(255, 255, 255, 0.2);
       color: #fff;
     }
+    
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .nav-panel {
+        transform: translateX(100%);
+      }
+      
+      .nav-panel.open {
+        transform: translateX(0);
+      }
+      
+      .nav-overlay {
+        display: block;
+      }
+      
+      .viewer-container {
+        display: block;
+        padding: 0px;
+        padding-right: 0px;
+      }
+    }
+    
+    /* Desktop: Nav panel visible by default, can be toggled */
+    @media (min-width: 769px) {
+      .nav-panel {
+        transform: translateX(0);
+      }
+      
+      .nav-panel.closed {
+        transform: translateX(100%);
+      }
+      
+      .nav-overlay {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -270,21 +348,29 @@
       <div class="viewer-wrapper">
         <div class="viewer-header" id="viewerHeader">
           <div class="viewer-title" id="viewerTitle">Select a screen to preview</div>
-          <button class="viewer-close" id="closeViewer" style="display: none;" title="Close viewer">
-            <span class="material-symbols-rounded" style="font-size: 20px;">close</span>
-          </button>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" title="Toggle navigation" aria-label="Toggle navigation menu">
+              <span class="material-symbols-rounded">menu</span>
+            </button>
+            <button class="viewer-close" id="closeViewer" style="display: none;" title="Close viewer">
+              <span class="material-symbols-rounded" style="font-size: 20px;">close</span>
+            </button>
+          </div>
         </div>
         <div class="viewer-placeholder" id="viewerPlaceholder">
           <span class="material-symbols-rounded viewer-placeholder-icon">phone_android</span>
           <div class="viewer-placeholder-text">Screen Preview</div>
           <div class="viewer-placeholder-subtext">Click a screen from the navigation to view it here</div>
         </div>
-        <iframe class="screen-viewer" id="screenViewer" style="display: none;" scrolling="no"></iframe>
+        <iframe class="screen-viewer" id="screenViewer" style="display: none;"></iframe>
       </div>
     </div>
     
+    <!-- Navigation Overlay (Mobile) -->
+    <div class="nav-overlay" id="navOverlay"></div>
+    
     <!-- Navigation Panel (Right) -->
-    <div class="nav-panel">
+    <div class="nav-panel" id="navPanel">
       <h2>Glintz</h2>
       <div class="nav-version">Version 3.0 • 24 Screens</div>
       
@@ -413,8 +499,12 @@
     const viewerHeader = document.getElementById('viewerHeader');
     const closeViewer = document.getElementById('closeViewer');
     const navItems = document.querySelectorAll('.nav-item');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const navPanel = document.getElementById('navPanel');
+    const navOverlay = document.getElementById('navOverlay');
     
     let currentScreen = null;
+    let navOpen = false;
     
     function loadScreen(screenPath, title) {
       // Update active state
@@ -458,6 +548,61 @@
       if (e.key === 'Escape' && currentScreen) {
         closeScreen();
       }
+    });
+    
+    // Navigation menu toggle (works on both mobile and desktop)
+    function toggleNav() {
+      navOpen = !navOpen;
+      const icon = mobileMenuToggle.querySelector('.material-symbols-rounded');
+      const isMobile = window.innerWidth <= 768;
+      
+      if (navOpen) {
+        navPanel.classList.add('open');
+        navPanel.classList.remove('closed');
+        if (isMobile) {
+          navOverlay.classList.add('active');
+        }
+        if (icon) icon.textContent = 'close';
+      } else {
+        navPanel.classList.remove('open');
+        if (isMobile) {
+          navPanel.classList.remove('open');
+          navOverlay.classList.remove('active');
+        } else {
+          navPanel.classList.add('closed');
+        }
+        if (icon) icon.textContent = 'menu';
+      }
+    }
+    
+    function closeNav() {
+      navOpen = false;
+      const isMobile = window.innerWidth <= 768;
+      navPanel.classList.remove('open');
+      if (isMobile) {
+        navOverlay.classList.remove('active');
+      } else {
+        navPanel.classList.add('closed');
+      }
+      const icon = mobileMenuToggle.querySelector('.material-symbols-rounded');
+      if (icon) icon.textContent = 'menu';
+    }
+    
+    if (mobileMenuToggle) {
+      mobileMenuToggle.addEventListener('click', toggleNav);
+    }
+    
+    if (navOverlay) {
+      navOverlay.addEventListener('click', closeNav);
+    }
+    
+    // Close nav when clicking a nav item on mobile
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          closeNav();
+        }
+      });
     });
   </script>
   <script src="js/app.js"></script>

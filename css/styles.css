@@ -743,7 +743,7 @@ body {
 
 .onboarding-screen .screen__content {
   padding: var(--space-4);
-  padding-bottom: 140px;
+  /*padding-bottom: 140px;*/
 }
 
 /* ============================================
